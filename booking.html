@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script
+      src="https://kit.fontawesome.com/64d58efce2.js"
+      crossorigin="anonymous"
+    ></script>
+    <link rel="stylesheet"
+  href="https://unpkg.com/boxicons@latest/css/boxicons.min.css">
+    <link rel="stylesheet" href="login.css" />
+    <title>Booking page</title>
+  </head>
+  <body>
+    <div class="container">
+      <div class="forms-container">
+        <div class="signin-signup">
+          <form action="" class="sign-in-form" method="post" name="booking-to-google-sheet">
+            <h2 class="title">BOOK A TRIP</h2>
+            <div class="input-field">
+                <i class="fas fa-lock"></i>
+                <input type="text" placeholder="Username" name="name"/>
+              </div>
+            <div class="input-field">
+              <i class="fas fa-user"></i>
+              <input type="text" placeholder="where to" name="trip name"/>
+            </div>
+            <div class="input-field">
+              <i class="fas fa-lock"></i>
+              <input type="date" placeholder="departure on" name="date"/>
+            </div>
+            <div class="input-field">
+                <i class="fas fa-lock"></i>
+                <input type="text" placeholder="period" name="no.of days"/>
+              </div>
+            <input type="submit" value="book now!" class="btn solid" name="submit" onclick="alert('Booking Done!')"/>
+          </form>
+        </div>
+      </div>
+          <div class="panels-container">
+            <div class="panel left-panel">
+              <div class="content">
+                <h3>Ready To Go!</h3>
+                <p>
+                  Pack ur bag with us and embark on unforegettable journeys.
+                  your adventure begin's here - explore with JOURNea!!
+                </p>
+              </div>
+              <img src="images/book.png" class="image" alt="" />
+            </div>
+          </div>
+    </div>
+          <script src="login.js"></script>
+          <script>
+            const scriptURL = 'https://script.google.com/macros/s/AKfycbwYKxffAIjM11jUQKT3T7-nVOJAPqe4VCtM-N30J53bWJlmbnDW-6kyoOsHAfAYcAHTiw/exec'
+            const form = document.forms['booking-to-google-sheet']
+          
+            form.addEventListener('submit', e => {
+              e.preventDefault()
+              fetch(scriptURL, { method: 'POST', body: new FormData(form)})
+                .then(response => console.log('Success!', response))
+                form.reset()
+                .catch(error => console.error('Error!', error.message))
+            })
+          </script>
+        </body>
+      </html>
